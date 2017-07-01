@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog List</title>
-</head>
-<body>
-    <div>
-        <h1><a href="">News Settler</a></h1>
-    </div>
+{% extends 'app/base.html' %}
 
+{% block content %}
     {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href=""> {{ post.title }} </a></h2>
-        <p> {{ post.text }} </p>
-    </div>
+        <div class="post">
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
     {% endfor %}
-
-</body>
-</html>
+{% endblock %}
