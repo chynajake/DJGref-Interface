@@ -31,8 +31,10 @@ python manage.py migrate app
 # Finally create superUser and run server
 
 python manage.py createsuperuser
-    Username: admin
-    Email address: admin@admin.com
-    Password:
-    Password (again):
+    
+Username: admin
+Email address: admin@admin.com
+Password:
+Password (again):
+
 python manage.py runserver
