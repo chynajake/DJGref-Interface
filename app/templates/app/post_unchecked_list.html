@@ -6,11 +6,7 @@
             <div class="date">
                 <p>published: {{ post.published_date }}</p>
             </div>
-            {% if post.pk in pages %}
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} (Checked) </a></h1>
-            {% else %}
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a></h1>
-            {% endif %}
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
@@ -36,21 +32,5 @@
         {% endif %}
       </ul>
     {% endif %}
-
-{#    <div class="pagination">#}
-{#        <span class="step-links">#}
-{#            {% if posts.has_previous %}#}
-{#                <a href="?page={{ posts.previous_page_number }}">previous</a>#}
-{#            {% endif %}#}
-{##}
-{#            <span class="current">#}
-{#                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.#}
-{#            </span>#}
-{##}
-{#            {% if posts.has_next %}#}
-{#                <a href="?page={{ posts.next_page_number }}">next</a>#}
-{#            {% endif %}#}
-{#        </span>#}
-{#    </div>#}
 
 {% endblock %}
