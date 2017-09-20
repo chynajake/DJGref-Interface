@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
-from .forms import PostForm
+from .models import Post, Father, Mother, Applicant
+from .forms import PostForm, ApplicantForm, MyApplicantForm, FatherForm, MotherForm, MyMotherForm, MyFatherForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import View
 
 # Create your views here.
 
@@ -121,3 +122,42 @@ def post_unchecked(request):
     unchecked = True
 
     return render(request, 'app/post_unchecked_list.html', {'posts': unchecked_posts, 'pages': cached_pages, 'unchecked': unchecked})
+
+class RegistrationView(View):
+    template_name = 'app/interface_form.html'
+    form_class = ApplicantForm
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+class ParentsView(View):
+    template_name = 'app/parents_form.html'
+    form_class_dad = FatherForm
+    form_class_mom = MotherForm
+
+    def get(self, request):
+        form_dad = self.form_class_dad(None)
+        form_mom = self.form_class_mom(None)
+        return render(request, self.template_name, {
+            'form_dad': form_dad,
+            'form_mom': form_mom
+        })
+
+
+class MyRegView(View):
+    template_name = 'app/my_form.html'
+    form_class = MyApplicantForm
+    form_dad_class = MyFatherForm
+    form_mom_class = MyMotherForm
+
+    def get(self, request):
+        form = self.form_class(None)
+        form_dad = self.form_dad_class(None)
+        form_mom = self.form_mom_class(None)
+        return render(request, self.template_name, {
+            'form': form,
+            'form_dad': form_dad,
+            'form_mom': form_mom
+        })
+

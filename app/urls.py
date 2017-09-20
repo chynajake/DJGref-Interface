@@ -10,4 +10,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/publish/$', views.post_publish, name='post_publish'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
     url(r'^unchecked/$', views.post_unchecked, name='post_unchecked'),
+    url(r'^registration/$', views.RegistrationView.as_view(), name='registration'),
+    # url(r'^reg$', views.MyRegView.as_view(), name='reg'),
+    url(r'^my_par$', views.ParentsView.as_view(), name='registration_parent'),
 ]

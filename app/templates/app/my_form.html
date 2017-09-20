@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% load material_form %}
+
+
+{% block content %}
+
+    <form method="POST" class="viewform">
+        {% csrf_token %}
+        {% form form=form %}{% endform %}
+        <div class="row">
+            <div class="col-6" style="width: 40%; display: inline-block">
+                {% form form=form_dad %}{% endform %}
+            </div>
+            <div style="width: 10%; display: inline-block">
+
+            </div>
+            <div class="col-6" style="width: 40%; display: inline-block">
+                {% form form=form_mom %}{% endform %}
+            </div>
+        </div>
+
+
+        <button type="submit" name="_submit" class="btn">Submit</button>
+    </form>
+
+{% endblock %}
